@@ -16,7 +16,9 @@ namespace Employee_Wage_Computation1
             int wagePerHour = 20;
             int work_Days_In_Month = 20;
             int total_Emp_Work_Hours=0;
-           
+            int monthly_Wage;
+
+
                 switch (random_Num)
                 {
                     case 1:
@@ -53,8 +55,14 @@ namespace Employee_Wage_Computation1
                         break;
                 }
             }
+
+            Console.WriteLine("Maximum no of working hours to be considered is 100");
             Console.WriteLine("No of working hours of employee in a month are {0}", total_Emp_Work_Hours);
-            int monthly_Wage = total_Emp_Work_Hours * 20;
+            if (total_Emp_Work_Hours <= 100)
+                monthly_Wage = total_Emp_Work_Hours * 20;
+            else
+                monthly_Wage = 100 * 20;
+
             Console.WriteLine("Montly wage of employee is {0}",monthly_Wage);
         }
     }
