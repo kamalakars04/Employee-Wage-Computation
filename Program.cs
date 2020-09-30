@@ -3,10 +3,17 @@ using System.Collections;
 
 namespace Employee_Wage_Computation1
 {
+
+    public interface IWageCalculator
+    {
+        void AddCompanyDetails(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours);
+        void CalculateTotalEmpWage();
+        void GetWagesOfCompany(string companyName);
+    }
+
     class Program
     {
 
-        
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Computation Program");
@@ -17,18 +24,13 @@ namespace Employee_Wage_Computation1
             empWageCalculator.AddCompanyDetails("Reliance", 60, 20, 100);
             empWageCalculator.AddCompanyDetails("Flipkart", 40, 20, 80);
 
-            // Calculate the employee wage of all the companyList
-            empWageCalculator.CalculateTotalEmpWage();
+            empWageCalculator.CalculateTotalEmpWage();                         // Calculate the employee wage of all the companyList
 
-            empWageCalculator.GetWagesOfCompany("Reliance");
- 
+            empWageCalculator.GetWagesOfCompany("Reliance");                    // Search by company
+
         }
 
-        
-
-
-
-
-
+       
     }
+
 }

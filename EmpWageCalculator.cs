@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Employee_Wage_Computation1
 {
-    class EmpWageCalculator
+    class EmpWageCalculator: IWageCalculator
     {
         List<Company> companyList = new List<Company>();
         Dictionary<string, Company> searchByCompany = new Dictionary<string, Company>();
@@ -96,7 +96,7 @@ namespace Employee_Wage_Computation1
             return totalMonthlyWage;
         }
 
-        internal void GetWagesOfCompany(string companyName)
+        public void GetWagesOfCompany(string companyName)
         {
             Console.WriteLine("The wages of the company {0} queried are as below:", companyName);
             Company company = searchByCompany[companyName];
