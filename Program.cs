@@ -24,9 +24,11 @@ namespace Employee_Wage_Computation1
             empWageCalculator.AddCompanyDetails("Reliance", 60, 20, 100);
             empWageCalculator.AddCompanyDetails("Flipkart", 40, 20, 80);
 
-            empWageCalculator.CalculateTotalEmpWage();                         // Calculate the employee wage of all the companyList
+            //Compute emp wage of the added companies
+            empWageCalculator.CalculateTotalEmpWage();                        
 
-            empWageCalculator.GetWagesOfCompany("Reliance");                    // Search by company
+            //Get the emp wage of the queried company
+            empWageCalculator.GetWagesOfCompany("Reliance");                    
 
         }
 

@@ -6,4 +6,11 @@
     <RootNamespace>Employee_Wage_Computation1</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.7.5" />
+    <PackageReference Include="NLog.Config" Version="4.7.5" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.6.5" />
+    <PackageReference Include="NLog.Schema" Version="4.7.5" />
+  </ItemGroup>
+
 </Project>

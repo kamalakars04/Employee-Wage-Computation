@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using NLog;
 
 namespace Employee_Wage_Computation1
 {
@@ -8,7 +9,7 @@ namespace Employee_Wage_Computation1
     {
         List<Company> companyList = new List<Company>();
         Dictionary<string, Company> searchByCompany = new Dictionary<string, Company>();
-       
+        private Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Adds the company details.
@@ -21,6 +22,7 @@ namespace Employee_Wage_Computation1
         {
             Company newCompany = new Company(companyName, wagePerHour, maxWorkingDays, maxWorkingHours);
             companyList.Add(newCompany);
+            logger.Info("User Added New Company");
             searchByCompany.Add(companyName, newCompany);
         }
 
@@ -34,8 +36,10 @@ namespace Employee_Wage_Computation1
             foreach(Company company in companyList)
             {
                 company.saveTotalWage(CalculateTotalEmpWage(company));
+                logger.Debug("Started calculating company total wage");
                 Console.WriteLine("The total monthly wage of {0} company is {1}\n", company.companyName , company.totalEmpWage );
             }
+            logger.Debug("Completed calculating all company wages");
         }
         private int CalculateDailyEmpHours() //Method to calculate daily work hours of employee
         {
@@ -101,6 +105,7 @@ namespace Employee_Wage_Computation1
             Console.WriteLine("The wages of the company {0} queried are as below:", companyName);
             Company company = searchByCompany[companyName];
 
+            logger.Info("User searched for total wage of particular company");
             foreach (KeyValuePair<int, int> dailyWage in company.dailyWage)
                 Console.WriteLine("The daily wage of employee for day {0} is {1}", dailyWage.Key, dailyWage.Value);
 
