@@ -7,14 +7,13 @@ namespace Employee_Wage_Computation1
 {
     class Company
     {
-
+        
         internal string companyName;
         internal int wagePerHour;
         internal int maxWorkingDays = 0;
         internal int maxWorkingHours;
         internal int totalEmpWage;
-        public int workingDay;
-        public Dictionary<int, int> dailyWage = new Dictionary<int, int>();
+        public List<int> dailyWage = new List<int>() ;
         
 
         public Company(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours)
@@ -23,21 +22,18 @@ namespace Employee_Wage_Computation1
             this.wagePerHour = wagePerHour;
             this.maxWorkingDays = maxWorkingDays;
             this.maxWorkingHours = maxWorkingHours;
-            this.workingDay = 1;
-
         }
 
-        public void saveDailyWage(int dailyWage)
+        public void SaveDailyWage(int dailyWage)
         {
-            
-            this.dailyWage.Add(workingDay,dailyWage);
-            workingDay++;
-
+            // Add working day and its daily wage
+            this.dailyWage.Add(dailyWage);
         }
     
 
-        public void saveTotalWage(int totalWage)
+        public void SaveTotalWage(int totalWage)
         {
+            //Save total emp wage
             totalEmpWage = totalWage;
         }
        

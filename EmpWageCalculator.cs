@@ -33,9 +33,10 @@ namespace Employee_Wage_Computation1
         /// </summary>
         public void CalculateTotalEmpWage()
         {
+            //Running loop for calculating wages of all companies
             foreach(Company company in companyList)
             {
-                company.saveTotalWage(CalculateTotalEmpWage(company));
+                company.SaveTotalWage(CalculateTotalEmpWage(company));
                 logger.Debug("Started calculating company total wage");
                 Console.WriteLine("The total monthly wage of {0} company is {1}\n", company.companyName , company.totalEmpWage );
             }
@@ -46,7 +47,6 @@ namespace Employee_Wage_Computation1
             // constants
             const int IS_FULL_TIME = 1;
             const int IS_PART_TIME = 2;
-
             //variables
             int empHours = 0;
             Random random = new Random();
@@ -73,7 +73,6 @@ namespace Employee_Wage_Computation1
 
         private int CalculateTotalEmpWage(Company company) //Method to calculate total wage
         {
-
             //variables
             int dailyWage = 0;
             int dailyEmpHours = 0;
@@ -83,31 +82,35 @@ namespace Employee_Wage_Computation1
 
             while (totalEmpWorkHours < company.maxWorkingHours && day < company.maxWorkingDays)
             {
-                day++;                                       // Calculates No of working days till now in month
-                dailyEmpHours = CalculateDailyEmpHours();    // Calculates No of working hours daily
+                // Calculates No of working days till now in month
+                day++;
+                // Calculates No of working hours daily
+                dailyEmpHours = CalculateDailyEmpHours();    
                 dailyWage = dailyEmpHours * company.wagePerHour;
-                company.saveDailyWage(dailyWage);
-
+                company.SaveDailyWage(dailyWage);
                 // calculates total working hours
-
                 if (totalEmpWorkHours + dailyEmpHours <= company.maxWorkingHours)
                     totalEmpWorkHours += dailyEmpHours;
                 else
                     totalEmpWorkHours = company.maxWorkingHours;
             }
-
+            //Calculate total monthly wage and return the same
             totalMonthlyWage = totalEmpWorkHours * company.wagePerHour;
             return totalMonthlyWage;
         }
-
+        /// <summary>
+        /// Gets the wages of company.
+        /// </summary>
+        /// <param name="companyName">Name of the company.</param>
         public void GetWagesOfCompany(string companyName)
         {
             Console.WriteLine("The wages of the company {0} queried are as below:", companyName);
+            //Search company by name
             Company company = searchByCompany[companyName];
-
             logger.Info("User searched for total wage of particular company");
-            foreach (KeyValuePair<int, int> dailyWage in company.dailyWage)
-                Console.WriteLine("The daily wage of employee for day {0} is {1}", dailyWage.Key, dailyWage.Value);
+            int workingDay=1;
+            foreach (var day in company.dailyWage)
+                Console.WriteLine("The daily wage of employee for day {0} is {1}", workingDay++ ,day );
 
             Console.WriteLine("\nThe total monthly wage of {0} company is {1}", companyName, company.totalEmpWage);
 
