@@ -75,7 +75,6 @@ namespace Employee_Wage_Computation1
         {
             //variables
             int dailyWage = 0;
-            int dailyEmpHours = 0;
             int day = 0;
             int totalEmpWorkHours = 0;
             int totalMonthlyWage;
@@ -84,13 +83,17 @@ namespace Employee_Wage_Computation1
             {
                 // Calculates No of working days till now in month
                 day++;
-                // Calculates No of working hours daily
-                dailyEmpHours = CalculateDailyEmpHours();    
-                dailyWage = dailyEmpHours * company.wagePerHour;
-                company.SaveDailyWage(dailyWage);
+                int dailyEmpHours = 0;
                 // calculates total working hours
                 if (totalEmpWorkHours + dailyEmpHours <= company.maxWorkingHours)
+                {
+                    // Calculates No of working hours daily
+                    dailyEmpHours = CalculateDailyEmpHours();
+                    dailyWage = dailyEmpHours * company.wagePerHour;
+                    company.SaveDailyWage(dailyWage);
                     totalEmpWorkHours += dailyEmpHours;
+                }
+                    
                 else
                     totalEmpWorkHours = company.maxWorkingHours;
             }
